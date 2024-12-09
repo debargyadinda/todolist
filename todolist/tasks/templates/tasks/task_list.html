@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+    <style>
+        body {
+            background-color: green;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        a:hover {
+            color: yellow;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task List</h1>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <a href="{% url 'add_task' %}">Add Task</a>
+    </div>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.description }}
+                <form action="{% url 'delete_task' task.id %}" method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>No tasks yet!</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

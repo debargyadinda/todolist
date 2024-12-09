@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Task</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #d4edda; /* Light green background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #555;
+        }
+
+        /* Form Styling */
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        form input:focus {
+            border-color: #0056b3;
+        }
+
+        form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Back to List */
+        a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Task</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="description">Task Description:</label>
+        <input type="text" id="description" name="description" required>
+        <button type="submit">Add Task</button>
+    </form>
+    <div>
+        <a href="{% url 'task_list' %}">Back to Task List</a>
+    </div>
+</body>
+</html>
